@@ -1,7 +1,7 @@
 {
-  "name": "web-snippets",
+  "name": "web-toolkit",
   "version": "1.0.0",
-  "description": "",
+  "description": "前端可复用工具箱，附带可运行 Demo",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -28,10 +28,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xinlei3166/web-snippets.git"
+    "url": "git+https://github.com/xinlei3166/web-toolkit.git"
   },
   "bugs": {
-    "url": "https://github.com/xinlei3166/web-snippets/issues"
+    "url": "https://github.com/xinlei3166/web-toolkit/issues"
   },
-  "homepage": "https://github.com/xinlei3166/web-snippets#readme"
+  "homepage": "https://github.com/xinlei3166/web-toolkit#readme"
 }
