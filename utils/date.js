@@ -15,11 +15,8 @@ export const formatDate = (time) => {
     return `${d.getFullYear()}-${suppleZero((d.getMonth() + 1))}-${suppleZero(d.getDate())}`;
 };
 
-// 两次时间的差值换算为小时和分钟
-const end = new Date('2019-11-07 00:00:00')
-const start = new Date()
-
-const timeDifferenceToHourAndMinute = (start, end) => {
+/** 两次时间的差值换算为小时和分钟 */
+export const timeDifferenceToHourAndMinute = (start, end) => {
     let startTimestamp
     let endTimestamp
     if (start instanceof Date) {
@@ -49,23 +46,23 @@ const timeDifferenceToHourAndMinute = (start, end) => {
     return { hour: hour, minute: minute }
 }
 
-// 获取一个月有多少天
+/** 获取一个月有多少天 */
 export const getCountDays = (date) => {
-    const curDate = date || new Date()
+    const curDate = date ? new Date(date) : new Date()
     const curMonth = curDate.getMonth()
     curDate.setMonth(curMonth + 1)
     curDate.setDate(0)
     return curDate.getDate()
 }
 
-// 获取一个月内的所有日期
+/** 获取本月剩余日期（含今天） */
 export const getMonthDays = () => {
     let dates = []
     const date = new Date()
     const year = date.getFullYear()
     const month = date.getMonth() + 1
     const day = date.getDate()
-    const count = this.getCountDays(date)
+    const count = getCountDays(date)
     for (let i = day; i <= count; i++) {
         const ymd = `${year}-${suppleZero(month)}-${suppleZero(i)}`
         dates.push(ymd)

@@ -13,7 +13,6 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Editor directories and files
-.fleet
 .idea
 .vscode
 *.suo
@@ -22,10 +21,3 @@ pnpm-debug.log*
 *.sln
 *.sw*
 
-# other
-demo.js
-demo.ts
-demo.html
-scribble.js
-scribble.ts
-scribble.html

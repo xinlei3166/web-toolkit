@@ -6,14 +6,15 @@
  */
 function debounce(method, delay) {
     let timer = null;
-    return function () {
-        var context = this, args = arguments;
+    return function (...agrs) {
+        var ctx = this, args = arguments;
         clearTimeout(timer);
         timer = setTimeout(function () {
             console.log(this)
-            method.call(context, args);
+            method.apply(ctx, args);
         }, delay);
     }
 }
-
-
+// const f = debounce(function (...args) {
+//   console.log("args", args);
+// }, 100)

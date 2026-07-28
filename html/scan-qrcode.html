@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>scan-qrcode</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.1/vconsole.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+  <style>
+    .qrcode{
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.48);
+    }
+    #reader{
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+<div class="qrcode" style="margin-top: 200px">
+  <div id="reader"></div>
+</div>
+<button id="btn" style="font-size: 32px; margin-bottom: 24px">扫描二维码</button>
+<div id="content" style="font-size: 32px"></div>
+<script>
+  var vConsole = new window.VConsole();
+
+  let btn = document.querySelector('#btn')
+  let content = document.querySelector('#content')
+  btn.onclick = () => {
+    if (!html5QrCode) {
+      getCameras()
+    } else {
+      start()
+    }
+  }
+
+  let html5QrCode
+  let error
+  function getCameras() {
+    Html5Qrcode.getCameras().then((devices) => {
+      if (devices && devices.length) {
+        html5QrCode = new Html5Qrcode("reader");
+        start();//扫码
+      }
+    }).catch((err) => {
+      console.log('err', err)
+      // handle err
+      html5QrCode = new Html5Qrcode("reader");
+      error = "ERROR: 您需要授予相机访问权限"
+      content.innerHTML = error
+      // $emit("err", error)
+    })
+  }
+
+  function start() {
+    content.innerHTML = ''
+    //environment后置 user前置
+    html5QrCode
+    .start(
+      {facingMode: "environment" },
+      {
+        fps: 2,//500毫秒扫描一次
+        qrbox: { width: 500, height: 500 },
+      },
+      (decodedText, decodedResult) => {
+        content.innerHTML = 'SUCCESS: ' + decodedText
+        // $emit("ok",decodedText)
+        stop()
+      }
+    )
+    .catch((err) => {
+      console.log(`Unable to start scanning, error: ${err}`);
+    });
+  }
+
+  function beforeDestroy() {
+    stop();
+  }
+
+  //关闭扫码
+  function stop() {
+    html5QrCode.stop().then((ignore) => {
+      // QR Code scanning is stopped.
+      console.log("QR Code scanning stopped.");
+    })
+    .catch((err) => {
+      // Stop failed, handle it.
+      console.log("Unable to stop scanning.");
+    });
+  }
+</script>
+</body>
+</html>

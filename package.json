@@ -13,12 +13,18 @@
     "@antv/g-canvas": "^0.4.12",
     "@antv/g6": "^3.1.6",
     "axios": "^0.27.2",
-    "cac": "^6.7.14",
-    "dayjs": "^1.10.4",
     "element-ui": "^2.12.0",
-    "js-base64": "^3.7.2",
-    "prettier": "^1.18.2",
+    "hash-sum": "^2.0.0",
     "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "remark": "^14.0.3",
+    "remark-directive": "^2.0.1",
+    "remark-frontmatter": "^4.0.1",
+    "remark-parse": "^10.0.2",
+    "remark-stringify": "^10.0.3",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.2"
   },
   "repository": {
     "type": "git",
@@ -27,8 +33,5 @@
   "bugs": {
     "url": "https://github.com/xinlei3166/web-snippets/issues"
   },
-  "homepage": "https://github.com/xinlei3166/web-snippets#readme",
-  "devDependencies": {
-    "picocolors": "^1.0.0"
-  }
+  "homepage": "https://github.com/xinlei3166/web-snippets#readme"
 }
